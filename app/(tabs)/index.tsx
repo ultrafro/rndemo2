@@ -6,7 +6,7 @@ import { Text, View } from "@/components/Themed";
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Tab Ondjdhde</Text>
       <View className="w-[75px] h-[50px] bg-red-300" />
       <View
         style={styles.separator}

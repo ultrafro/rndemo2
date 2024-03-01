@@ -1,0 +1,164 @@
+title: Wylan_Date_1
+tags: #bg:testBgSections
+---
+// (scrolling)
+// (City at night)
+You're at a black tie benefit...
+// (reusable red carpet/fancy event event art)
+With seemingly every socialite, billionaire, and big wig person in the city.
+The guests are here for the cameras more than the good cause.
+// (reusable paparazzi event art)
+But you've been volunteering with the Castellan Research Foundation for years.
+It's usually more bake sales than black tie,
+but tonight you're filling in at the silent auction.
+// (Rich/mean NPC, hopefully we actually have one we can use in multiple stories. For instance, could be Lex's mom).
+Mean NPC: Champagne, please.
+-> Oh, uh...sure, I'll find some.
+	Mean NPC: Can you believe how the wait staff are dressed here?
+-> I'm not a waitress, actually.
+	Mean NPC: Well you certainly dress the part.
+
+-> At least I didn't wear the same dress as three other women here.
+-> Bite your tongue
+
+A tall, slim man slides over, turning to the mean guest
+Ambrose: Mrs. Carnegie, I think your husband is lost...
+Ambrose: ...in another woman's skirts.
+She storms off,  muttering furiously.
+Ambrose: Don't mind her. I think you look lovely.
+Ambrose: I'm Ambrose James. You've probably heard of me.
+Ambrose: And what shall I call you?
+-> Tell him your name.
+	Ambrose: You know, $playerName, I'm thinking of bidding on this diamond necklace.
+	Ambrose: Could I ask you a few questions?
+	Player: Sure, what can I tell you?
+
+-> Be snarky.
+	Player: Let's go with nothing?
+	Ambrose: Is that any way to speak to a gala attendee?
+	Ambrose: I was just thinking of spending loads of cancer-curing dollars on this necklace here.
+	Player: Fine, what can I tell you?
+
+He begins to stand closer and closer, backing you into a corner.
+Ambrose: How many carats is it?
+Player: Let me check...I believe it's 54 carats.
+Ambrose: Highest bid?
+Player: Um, it says $150,000 so far.
+
+You're alone at the back of the room now, and Ambrose leans in to whisper.
+
+Ambrose: And what about you? What's the opening bid on a night with you?
+-> Say something snarky #givesTrait:Fierce-1
+	Player: You can't afford me.
+	His lips curl into a threatening smirk.
+-> Appeal to his better side
+	Player: That's incredibly rude. You must be drunk.
+	His lips curl into a bemused smirk.
+
+He takes a step closer until there is no space between you.
+
+-> Yell for help
+<<jump AmbroseHelp>>
+-> Slap him #givesTrait:Fierce-1
+<<jump AmbroseSlap>>
+===
+title: AmbroseHelp
+---
+Ambrose: Who do you think is going to come?
+
+Suddenly, an enormous figure steps behind Ambrose,
+his broad shoulders blocking out the glittering lights.
+
+Wylan: I will.
+Wylan: Touch {them("Player")} and you die. #angry
+<<jump wylanIntro>>
+===
+
+title: AmbroseSlap
+---
+Ambrose: Oh, you'll pay for that.
+
+Suddenly, an enormous figure steps behind Ambrose,
+his broad shoulders blocking out the glittering lights.
+
+Wylan: I think you'll be paying tonight, Ambrose.
+Wylan: Touch {them("Player")} and you die. #angry
+<<jump wylanIntro>>
+===
+title: wylanIntro
+---
+His voice, deep and rough, almost a growl, is unfamiliar.
+But something about him tugs at your memory.
+-> Ask for his name
+Player: Do I know you?
+
+Both men ignore you as they turn to face off.
+
+Ambrose: {They("Player")} {pick_plural("Player", "are", "is")} mine, Wylan.
+
+By way of response, Wylan slugs him across the face, hard.
+You hear gasps as the other guests flee. So much for a peaceful charity gala.
+
+Wylan: $playerName's not interested.
+
+Ambrose's eyes glitter with delight, as he wipes blood from his nose.
+
+Ambrose: Now when did I tell you {their("Player")} name, brother?
+
+Your rescuer turns to you, almost involuntarily, and your eyes lock.
+His expression is intense and pained. He almost looks guilty.
+
+A feeling of familiarity creeps up slowly, then all at once you realize.
+That's Noah.
+Your best friend. You spent so many summers together.
+Then he disappeared.
+Player: Noah? Is that you?
+
+Wylan: We can't talk here.
+
+Ambrose: Noah, eh? It's been a long time since I've heard that name.
+Ambrose: And how do you know my dear older brother, $playerName?
+
+-> Tell the truth #givesTrait:OpenHearted-1
+	Player: We're old friends.
+-> Tell him to get lost #givesTrait:Fierce-1
+	Player: I'm not saying anything to you, asshole.
+
+Noah (or is it Wylan now?) grabs your wrist roughly.
+Wylan: Don't talk to him. We have to get you out of here.
+
+You see security rushing towards you.
+
+-> Agree to go with him #givesTrait:OpenHearted-1
+-> Pull your hand away
+	Player: Don't tell me what to do.
+	Wylan: You want to make even more of a scene?
+
+Wylan pulls you through the crowd.
+People give you a wide berth, but you can already hear them gossiping.
+Everyone seems terrified of Wylan.
+
+Once outside, the cold night air shocks you.
+Player: What was that?
+Wylan: My driver will take you home. If Ambrose tries to contact you, bothers you, anything - let me know.
+He hands you a business card, as if you just met.
+As if you didn't basically grow up together.
+
+-> Look at the card
+	Wylan James. Stockbridge Capital. COO.
+It vaguely rings a bell, as if one of your roommates has mentioned it before.
+-> Demand answers from Wylan
+	Player: Did you change your name? What are you doing here?
+
+Wylan's jaw tightens, and he looks away.
+His driver ushers you into a black SUV and shuts the door before you can learn more.
+
+Back home, the mystery keeps you up all night.
+You never knew Noah had a brother. Let alone that he's apparently some billionaire heir?
+Why did he disappear all those years ago?
+Lost in your thoughts you barely hear the doorbell.
+
+You find a package left at your door.
+It's 54 carats of diamonds... and a note.
+"You need protection. I'm moving in. - Wylan"
+===
