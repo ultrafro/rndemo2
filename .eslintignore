@@ -1,0 +1,11 @@
+node_modules
+assets
+.eslintrc.js
+package-lock.json
+package.json
+README.md
+webpack.config.js
+babel.config.js
+tailwind.config.js
+components\__tests__\StyledText-test.js
+components/__tests__/StyledText-test.js
