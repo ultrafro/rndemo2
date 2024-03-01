@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import OMMYS, { OMMOption } from "./OMMYS";
+import { Asset, useAssets } from "expo-asset";
+import useFile from "./useFile";
 
 export function useRawYSString(yarnspinnerString: string) {
   return useYS(yarnspinnerString, false);
@@ -76,6 +78,20 @@ export function useYS(
 function useFetchedYarn(path: string) {
   const [fileContent, setFileContent] = useState("");
 
+  //   const { result, error } = useFile(path);
+
+  //   useEffect(() => {
+  //     async function testFetch() {
+  //       const response = await fetch(path); // Adjust the path as per your file location
+  //       console.log("respsone", response);
+  //     }
+  //     testFetch();
+  //   }, []);
+
+  //   const [assets, error] = useAssets([require(path)]);
+
+  //   console.log("assets", assets);
+
   useEffect(() => {
     async function fetchFile() {
       try {
@@ -92,6 +108,8 @@ function useFetchedYarn(path: string) {
 
     fetchFile();
   }, [path]);
+
+  //return result ?? "";
 
   return fileContent;
 }

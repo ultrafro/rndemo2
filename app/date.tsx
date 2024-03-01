@@ -10,13 +10,13 @@ export default function Date() {
     nextLine,
     nextAvailable,
     availableCommands,
-  } = useYSFromPath("/ysdates/billie.yarn");
+  } = useYSFromPath("assets/ysdates/billie.yarn");
 
   return (
     <View className="flex-1 bg-white justify-center items-center">
       <Text className="text-center">YS Date Demo</Text>
-      {/* {currentLine && <Text>{currentLine}</Text>} */}
-      {/* <ScrollView>
+      {!!currentLine && <Text>{currentLine}</Text>}
+      <ScrollView>
         {currentOptions.map((option, idx) => (
           <TouchableOpacity
             key={idx}
@@ -27,7 +27,7 @@ export default function Date() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      {nextAvailable && (
+      {!!nextAvailable && (
         <TouchableOpacity
           onPress={nextLine}
           className="bg-blue-700 rounded-xl p-4"
@@ -44,7 +44,7 @@ export default function Date() {
             ))}
           </ScrollView>
         </View>
-      )} */}
+      )}
     </View>
   );
 }
