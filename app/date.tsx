@@ -13,10 +13,11 @@ export default function Date() {
   } = useYSFromPath("assets/ysdates/billie.yarn");
 
   return (
-    <View className="flex-1 bg-white justify-center items-center">
+    <View className="flex-col w-full h-full bg-white justify-center space-y-12 items-center">
       <Text className="text-center">YS Date Demo</Text>
       {!!currentLine && <Text>{currentLine}</Text>}
-      <ScrollView>
+
+      <View className="flex-col justify-center items-center">
         {currentOptions.map((option, idx) => (
           <TouchableOpacity
             key={idx}
@@ -26,7 +27,7 @@ export default function Date() {
             <Text className="text-white">{option}</Text>
           </TouchableOpacity>
         ))}
-      </ScrollView>
+      </View>
       {!!nextAvailable && (
         <TouchableOpacity
           onPress={nextLine}
