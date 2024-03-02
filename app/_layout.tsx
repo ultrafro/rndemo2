@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useColorScheme } from "@/components/useColorScheme";
 
 import { NativeWindStyleSheet } from "nativewind";
+import DatePage from "./DatePage";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -22,10 +23,10 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "date",
-};
+// export const unstable_settings = {
+//   // Ensure that reloading on `/modal` keeps a back button present.
+//   initialRouteName: "date",
+// };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -59,11 +60,12 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} /> */}
+      <DatePage />
+      {/* <Stack initialRouteName="date">
+ <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         <Stack.Screen name="date" options={{ headerShown: false }} />
-      </Stack>
+      </Stack> */}
     </ThemeProvider>
   );
 }
