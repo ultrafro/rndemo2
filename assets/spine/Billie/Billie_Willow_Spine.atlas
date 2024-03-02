@@ -1,0 +1,77 @@
+Billie_Willow_Spine.png
+size:9139,2083
+filter:Linear,Linear
+pma:true
+Arm L
+bounds:5128,2,957,2180
+offsets:0,1,1265,2181
+rotate:90
+Arm R
+bounds:6662,1139,942,2354
+offsets:172,0,1114,2354
+rotate:90
+Bang L
+bounds:8144,129,568,472
+rotate:90
+Bang R
+bounds:8618,307,390,514
+rotate:90
+Body
+bounds:2,94,1987,5124
+offsets:15,0,2002,5124
+rotate:90
+Brow L
+bounds:6662,983,154,98
+offsets:0,0,155,109
+rotate:90
+Brow R
+bounds:9018,1492,205,106
+rotate:90
+Eye Lid R
+bounds:6998,987,183,150
+Eye Whites
+bounds:8618,70,366,235
+offsets:1,1,368,237
+Hair Back
+bounds:5621,989,1039,1092
+offsets:0,14,1039,1106
+Hair Side L
+bounds:5128,961,491,1120
+offsets:0,0,600,1149
+Hair Side R
+bounds:8144,699,438,892
+offsets:10,0,458,892
+rotate:90
+Head
+bounds:7310,22,970,832
+rotate:90
+Layer 142
+bounds:9018,1699,156,110
+offsets:0,0,157,111
+rotate:90
+Mouth Default
+bounds:7183,994,229,143
+Nose
+bounds:6762,984,153,234
+rotate:90
+Pupil
+bounds:2,9,78,83
+offsets:2,1,82,85
+Pupil L
+bounds:82,10,71,82
+offsets:2,2,74,86
+Reflection L
+bounds:155,74,18,12
+offsets:1,2,22,16
+rotate:90
+Reflection R
+bounds:155,74,18,12
+offsets:1,2,22,16
+rotate:90
+Under Eye L
+bounds:9018,1986,119,95
+offsets:0,1,119,96
+Under Eye R
+bounds:9018,1857,127,113
+offsets:0,1,128,114
+rotate:90

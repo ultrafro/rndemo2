@@ -14,6 +14,7 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { NativeWindStyleSheet } from "nativewind";
 import DatePage from "./DatePage";
 import CanvasTest from "./CanvasTest";
+import SpineTest from "./SpineTest";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -62,7 +63,8 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       {/* <DatePage /> */}
-      <CanvasTest />
+      {/* <CanvasTest /> */}
+      <SpineTest />
       {/* <Stack initialRouteName="date">
  <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
