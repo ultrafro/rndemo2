@@ -3,6 +3,7 @@ import DatePage from "./DatePage";
 import CanvasTest from "./CanvasTest";
 import SpineTest from "./SpineTest";
 import { ReactNode } from "react";
+import ProgressiveLoading from "./ProgressiveLoading";
 
 export type ExperimentChip = {
   name: string;
@@ -14,9 +15,9 @@ export const experiments = [
   { name: "Yarnspinner", component: <DatePage />, underConstruction: false },
   { name: "Three JS", component: <CanvasTest />, underConstruction: false },
   { name: "Spine", component: <SpineTest />, underConstruction: false },
-  { name: "Loading", underConstruction: true },
   {
     name: "Progressive Loading",
+    component: <ProgressiveLoading />,
     underConstruction: true,
   },
   {

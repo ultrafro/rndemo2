@@ -62,7 +62,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
   const [selectedExperiment, setSelectedExperiment] = useState<string | null>(
-    null
+    "Progressive Loading"
   );
 
   const selectedExperimentComponent = experiments.find(
