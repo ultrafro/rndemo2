@@ -7,7 +7,7 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useColorScheme } from "@/components/useColorScheme";
 
@@ -15,6 +15,8 @@ import { NativeWindStyleSheet } from "nativewind";
 import DatePage from "./DatePage";
 import CanvasTest from "./CanvasTest";
 import SpineTest from "./SpineTest";
+import { Experiments, experiments } from "./Experiments";
+import { Button, View } from "react-native";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -59,17 +61,42 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const [selectedExperiment, setSelectedExperiment] = useState<string | null>(
+    null
+  );
+
+  const selectedExperimentComponent = experiments.find(
+    (e) => e.name === selectedExperiment
+  )?.component;
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      {!!!selectedExperiment && (
+        <Experiments OnSelect={setSelectedExperiment} />
+      )}
+      {!!selectedExperiment &&
+        !!selectedExperimentComponent &&
+        selectedExperimentComponent}
+
+      {!!selectedExperiment && (
+        <View className="absolute top-0 right-0 m-4">
+          <Button
+            title="Back"
+            onPress={() => {
+              setSelectedExperiment(null);
+            }}
+          />
+        </View>
+      )}
+
       {/* <DatePage /> */}
       {/* <CanvasTest /> */}
-      <SpineTest />
+      {/* <SpineTest /> */}
       {/* <Stack initialRouteName="date">
- <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        <Stack.Screen name="date" options={{ headerShown: false }} />
-      </Stack> */}
+     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            <Stack.Screen name="date" options={{ headerShown: false }} />
+          </Stack> */}
     </ThemeProvider>
   );
 }
