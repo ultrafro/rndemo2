@@ -14,7 +14,7 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import ConfettiExplosion from "react-confetti-explosion";
+// import ConfettiExplosion from "react-confetti-explosion";
 
 export default function ReanimatedTest() {
   const [hovered, setHovered] = useState(false);
@@ -127,7 +127,7 @@ export default function ReanimatedTest() {
               // }}
             >
               <Text>Catch me!</Text>
-              {explode && <ConfettiExplosion />}
+              {/* {explode && <ConfettiExplosion />} */}
             </Animated.View>
           </GestureDetector>
 
