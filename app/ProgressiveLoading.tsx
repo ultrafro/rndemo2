@@ -13,21 +13,12 @@ import { useCachedFile } from "./useCachedFile";
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
-// const localWylan = require("./assets/images/Wylan.png");
-
 export default function ProgressiveLoading() {
   const localSource = "../assets/images/Wylan.png";
   const remoteSource1 =
     "https://storage.googleapis.com/testcorsbucket/Logan.png";
   const remoteSource2 =
     "https://storage.googleapis.com/testcorsbucket/Jessa.png";
-
-  const [remoteImage1, setRemoteImage1] = useState<string | undefined>(
-    undefined
-  );
-  const [remoteImage2, setRemoteImage2] = useState<string | undefined>(
-    undefined
-  );
 
   const [downloadProgress1, setDownloadProgress1] = useState<number>(0);
   const [downloadProgress2, setDownloadProgress2] = useState<number>(0);
@@ -60,25 +51,9 @@ export default function ProgressiveLoading() {
     }
   }, [clearingCache]);
 
-  //   useEffect(() => {
-  //     console.log("should fetch image 1 changed to: " + shouldFetchImage1);
-  //   }, [shouldFetchImage1]);
-
   if (clearingCache) {
     return <Text>Clearing cache......</Text>;
   }
-
-  //   return (
-  //     <Image
-  //       className="w-full h-full"
-  //       style={{ width: 100, height: 100 }}
-  //       source={require("../assets/images/Wylan.png")}
-  //       //source={wylanImage}
-  //       placeholder={blurhash}
-  //       contentFit="contain"
-  //       transition={1000}
-  //     />
-  //   );
 
   return (
     <View className="flex-col w-full h-full justify-around items-center">
@@ -134,7 +109,6 @@ export default function ProgressiveLoading() {
       <Button
         title={"Clear cache"}
         onPress={() => {
-          console.log("clean up cache button");
           setShouldNotFetchImage1(true);
           setShouldNotFetchImage2(true);
 
@@ -142,8 +116,6 @@ export default function ProgressiveLoading() {
           setDownloadProgress2(0);
 
           setClearingCache(true);
-          //   cleanupCache();
-          //   setClearingCache(false);
         }}
       />
     </View>

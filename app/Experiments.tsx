@@ -18,7 +18,7 @@ export const experiments = [
   {
     name: "Progressive Loading",
     component: <ProgressiveLoading />,
-    underConstruction: true,
+    underConstruction: false,
   },
   {
     name: "City View Nav",
