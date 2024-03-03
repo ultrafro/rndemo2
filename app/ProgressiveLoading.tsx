@@ -51,6 +51,8 @@ export default function ProgressiveLoading() {
     }
   }, [clearingCache]);
 
+  const isWeb = Platform.OS === "web";
+
   if (clearingCache) {
     return <Text>Clearing cache......</Text>;
   }
@@ -118,6 +120,13 @@ export default function ProgressiveLoading() {
           setClearingCache(true);
         }}
       />
+
+      {/* Top left indicator saying this only works on device */}
+      {isWeb && (
+        <View className="absolute top-0 left-0 m-4">
+          <Button title="Progressive Caching Not Implemented On the Web" />
+        </View>
+      )}
     </View>
   );
 }
