@@ -253,10 +253,19 @@ export class SpineThing extends THREE.Object3D {
           attachment.uvs[3],
         ]);
 
-        var uvs3 = new Float32Array([0, 1, 1, 1, 0, 0, 1, 0]);
+        var uvs3 = new Float32Array([
+          attachment.uvs[6],
+          1 - attachment.uvs[7],
+          attachment.uvs[0],
+          1 - attachment.uvs[1],
+          attachment.uvs[4],
+          1 - attachment.uvs[5],
+          attachment.uvs[2],
+          1 - attachment.uvs[3],
+        ]);
 
         // Update UVs
-        geometry.attributes.uv.set(uvs2);
+        geometry.attributes.uv.set(uvs3);
         // geometry.attributes.uv.set();
 
         //rear upper arm:

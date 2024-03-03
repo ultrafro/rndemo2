@@ -1,14 +1,60 @@
-import { THREE } from "expo-three";
+import ExpoTHREE, { THREE } from "expo-three";
+import { getRemoteSource } from "./FileUtils";
 
 export async function LoadText(
   path: string
 ): Promise<{ result?: string; error?: any }> {
   console.log("loading text at path: ", path);
   try {
-    const response = await fetch(path);
-    console.log("loaded text:", response);
-    const result = await response.text();
-    return { result };
+    const RSResult = await getRemoteSource(
+      path,
+      undefined,
+      false,
+      false,
+      undefined
+    );
+    if (!!RSResult?.contents) {
+      return { result: RSResult.contents };
+    } else {
+      return { error: "No contents found in remote source result: " + path };
+    }
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function LoadTexture(path: string): Promise<{
+  texture?: HTMLImageElement;
+  width?: number;
+  height?: number;
+  error?: any;
+}> {
+  console.log("loading texture at path: ", path);
+  try {
+    const RSResult = await getRemoteSource(
+      path,
+      undefined,
+      false,
+      false,
+      undefined
+    );
+    if (!!RSResult?.contents) {
+      let texture: THREE.Texture | null = null;
+      try {
+        // texture = await ExpoTHREE.loadAsync(RSResult.localFile);
+        texture = await ExpoTHREE.loadAsync(path);
+      } catch (e) {
+        console.error("Error loading texture: ", e);
+      }
+
+      return {
+        texture,
+        width: texture.image.width,
+        height: texture.image.height,
+      };
+    } else {
+      return { error: "No contents found in remote source result: " + path };
+    }
   } catch (error) {
     return { error };
   }
@@ -27,26 +73,6 @@ export function LoadTextWithCallback(
 
     callback(result ?? "");
   });
-}
-
-export async function LoadTexture(path: string): Promise<{
-  texture?: HTMLImageElement;
-  width?: number;
-  height?: number;
-  error?: any;
-}> {
-  console.log("loading texture at path: ", path);
-  try {
-    const response = await fetch(path);
-    const blob = await response.blob();
-    const result = await createImageBitmap(blob);
-
-    const texture = new THREE.Texture(result);
-
-    return { texture, width: result.width, height: result.height };
-  } catch (error) {
-    return { error };
-  }
 }
 
 export function LoadTextureWithCallback(

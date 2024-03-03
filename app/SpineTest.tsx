@@ -118,7 +118,7 @@ export default function App() {
             //   name: "Billie_Willow_Spine",
             //   path: "assets/spine/Billie",
             name: "spineboy",
-            path: "assets/spine/spineboy",
+            path: "https://storage.googleapis.com/testcorsbucket/rndemo/spine/spineboy",
             scale: 0.001,
             onLoad: () => {
               console.log("spineThing loaded!!!");

@@ -2,6 +2,7 @@ import * as FileSystem from "expo-file-system";
 import { Button, View, Text, Platform } from "react-native";
 export const CACHE_IMAGE_FOLDER = FileSystem.cacheDirectory + "IMAGE_CACHE";
 import { Asset } from "expo-asset";
+import { Buffer } from "buffer";
 
 export const getRemoteSourceRN = async (
   source: string,
@@ -46,13 +47,6 @@ export const getRemoteSourceRN = async (
   if (cacheFileRetrievalSuccess) {
     const fileContents = await FileSystem.readAsStringAsync(cachedFileSource);
 
-    console.log(
-      "fileContents",
-      fileContents,
-      "cachedFileSource",
-      cachedFileSource
-    );
-
     OnProgress?.(1);
 
     return { localFile: cachedFileSource, contents: fileContents };
@@ -91,10 +85,15 @@ export const getRemoteSourceRN = async (
       } else {
         console.log("Finished downloading to ", downloadResult);
 
-        const fileContents =
-          await FileSystem.readAsStringAsync(cachedFileSource);
+        const fileContents = await FileSystem.readAsStringAsync(
+          cachedFileSource,
+          { encoding: FileSystem.EncodingType.UTF8 }
+        );
 
-        return { localFile: downloadResult.uri, contents: fileContents };
+        return {
+          localFile: downloadResult.uri,
+          contents: fileContents,
+        };
       }
     } catch (e) {
       console.error("failed to download: ", source, e);
@@ -133,13 +132,10 @@ async function MakeSureCacheDirectoryExists() {
       console.error("Error creating cache dir: ", e);
     }
   } else {
-    console.log("cache directory exists", CACHE_IMAGE_FOLDER);
-
     //print contents
     const cachedFiles = await FileSystem.readDirectoryAsync(
       `${CACHE_IMAGE_FOLDER}`
     );
-    console.log("cachedFiles", cachedFiles);
   }
 }
 
