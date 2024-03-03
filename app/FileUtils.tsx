@@ -46,8 +46,10 @@ export const getRemoteSource = async (
     }
 
     console.warn(
-      `File at path ${source} does not exist in the FS. Attempting to fetch from the network.`,
-      cachedFileSource
+      `File at path ${source} does not exist in the FS. Attempting to fetch from the network.` +
+        cachedFileSource +
+        " dont fetch: " +
+        dontFetch
     );
 
     const progressCB = (progress: FileSystem.DownloadProgressData) => {
@@ -144,16 +146,15 @@ export const cleanupCache = async () => {
     );
 
     for (let i = 0; i < cachedFiles.length; i++) {
-      console.log("inspecting file: ", i, cachedFiles[i]);
       let fileUnreadable = false;
       try {
         //get info about cache file
         const fileInfo = await FileSystem.getInfoAsync(
-          `${CACHE_IMAGE_FOLDER}${cachedFiles[i]}`
+          `${CACHE_IMAGE_FOLDER}/${cachedFiles[i]}`
         );
         if (!fileInfo.exists) {
           console.warn(
-            "trying to deletee file, but it does not exist",
+            "trying to delet file, but it does not exist",
             cachedFiles[i]
           );
           fileUnreadable = true;
@@ -170,51 +171,19 @@ export const cleanupCache = async () => {
         );
       }
       if (!fileUnreadable) {
-        console.log("deleting cache file: " + cachedFiles[i]);
-        await FileSystem.deleteAsync(`${CACHE_IMAGE_FOLDER}${cachedFiles[i]}`);
+        //console.log("deleting cache file: " + cachedFiles[i]);
+        await FileSystem.deleteAsync(`${CACHE_IMAGE_FOLDER}/${cachedFiles[i]}`);
       }
     }
 
-    // let position = 0;
-    // let results: { file: string; modificationTime?: number; size?: number }[] =
-    //   [];
-    // const batchSize = 10;
+    //cache clearing done, print new results
 
-    // for (let i = 0; i < cachedFiles.length; i += batchSize) {
-    //   const itemsForBatch = cachedFiles.slice(i, i + batchSize);
-    //   const allPromises: Promise<any>[] = [];
-    //   for (let j = 0; j < itemsForBatch.length; j += 1) {
-    //     allPromises.push(
-    //       FileSystem.getInfoAsync(`${CACHE_IMAGE_FOLDER}${itemsForBatch[j]}`)
-    //     );
-    //   }
-
-    //   const resultsForBatch = await Promise.all(allPromises);
-    //   results = [
-    //     ...results,
-    //     ...resultsForBatch.map((info, index) => ({
-    //       file: itemsForBatch[index],
-    //       modificationTime: info.modificationTime,
-    //       size: info.size,
-    //     })),
-    //   ];
-    // }
-
-    // // cleanup cache, leave only 5000 most recent files
-    // const sorted = results.sort(
-    //   (a, b) => a.modificationTime - b.modificationTime
-    // );
-
-    // for (let i = 0; i < results.length; i++) {
-    //   console.log("deleting cache file: " + results[i].file);
-    //   await FileSystem.deleteAsync(`${CACHE_IMAGE_FOLDER}${results[i].file}`);
-    // }
-
-    // for (let i = 0; sorted.length - i > 8000; i += 1) {
-    //   // may need to reduce down to 500
-    //   FileSystem.deleteAsync(`${CONST.IMAGE_CACHE_FOLDER}${sorted[i].file}`, {
-    //     idempotent: true,
-    //   });
-    // }
+    const cachedFilesAfter = await FileSystem.readDirectoryAsync(
+      `${CACHE_IMAGE_FOLDER}`
+    );
+    console.log(
+      "cache clearing done, printing new results of cache, cachedFilesAfter",
+      cachedFilesAfter
+    );
   }
 };

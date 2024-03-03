@@ -1,6 +1,6 @@
 import { Button, View, Text, Platform } from "react-native";
 import { Image } from "expo-image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as FileSystem from "expo-file-system";
 import {
   CACHE_IMAGE_FOLDER,
@@ -32,19 +32,41 @@ export default function ProgressiveLoading() {
   const [downloadProgress1, setDownloadProgress1] = useState<number>(0);
   const [downloadProgress2, setDownloadProgress2] = useState<number>(0);
 
-  const [shouldFetchImage1, setShouldFetchImage1] = useState<boolean>(false);
-  const [shouldFetchImage2, setShouldFetchImage2] = useState<boolean>(false);
+  const [shouldNotFetchImage1, setShouldNotFetchImage1] =
+    useState<boolean>(true);
+  const [shouldNotFetchImage2, setShouldNotFetchImage2] =
+    useState<boolean>(true);
+
+  const [clearingCache, setClearingCache] = useState<boolean>(false);
 
   const image1result = useCachedFile(
     remoteSource1,
-    shouldFetchImage1,
+    shouldNotFetchImage1,
     setDownloadProgress1
   );
   const image2result = useCachedFile(
     remoteSource2,
-    shouldFetchImage2,
+    shouldNotFetchImage2,
     setDownloadProgress2
   );
+
+  useEffect(() => {
+    if (clearingCache) {
+      cleanupCache().then(() => {
+        image1result?.forceCacheCheck();
+        image2result?.forceCacheCheck();
+        setClearingCache(false);
+      });
+    }
+  }, [clearingCache]);
+
+  //   useEffect(() => {
+  //     console.log("should fetch image 1 changed to: " + shouldFetchImage1);
+  //   }, [shouldFetchImage1]);
+
+  if (clearingCache) {
+    return <Text>Clearing cache......</Text>;
+  }
 
   //   return (
   //     <Image
@@ -86,45 +108,42 @@ export default function ProgressiveLoading() {
         <Button
           title="Download remote image 1"
           onPress={async () => {
-            setShouldFetchImage1(true);
-
-            // const result = await getRemoteSource(
-            //   remoteSource1,
-            //   setDownloadProgress1
-            // );
-            // console.log("got remote source 1: ", result);
-
-            // if (!!result) {
-            //   setRemoteImage1(result.localFile);
-            // }
+            setShouldNotFetchImage1(false);
           }}
         />
       </View>
 
       <View className="w-48 h-48 bg-slate-500 flex-col justify-center items-center">
-        {!!remoteImage2 && (
+        {!!image2result && (
           <Image
             className="w-full h-full"
-            source={remoteImage2}
+            source={{ uri: image2result.localFile }}
             placeholder={blurhash}
             contentFit="contain"
             transition={1000}
           />
         )}
-        {downloadProgress2 > 0 && <Text>Progress: {downloadProgress2}</Text>}
+        {<Text>Progress: {(downloadProgress2 * 100).toFixed(1)}%</Text>}
         <Button
           title="Download remote image 2"
           onPress={async () => {
-            // const result = getRemoteSource(remoteSource2);
+            setShouldNotFetchImage2(false);
           }}
         />
       </View>
-
       <Button
         title={"Clear cache"}
         onPress={() => {
           console.log("clean up cache button");
-          cleanupCache();
+          setShouldNotFetchImage1(true);
+          setShouldNotFetchImage2(true);
+
+          setDownloadProgress1(0);
+          setDownloadProgress2(0);
+
+          setClearingCache(true);
+          //   cleanupCache();
+          //   setClearingCache(false);
         }}
       />
     </View>
