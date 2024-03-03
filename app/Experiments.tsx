@@ -4,6 +4,7 @@ import CanvasTest from "./CanvasTest";
 import SpineTest from "./SpineTest";
 import { ReactNode } from "react";
 import ProgressiveLoading from "./ProgressiveLoading";
+import ReanimatedTest from "./ReanimatedTest";
 
 export type ExperimentChip = {
   name: string;
@@ -21,23 +22,28 @@ export const experiments = [
     underConstruction: false,
   },
   {
-    name: "City View Nav",
-    underConstruction: true,
+    name: "Reanimated",
+    component: <ReanimatedTest />,
+    underConstruction: false,
   },
   {
-    name: "Lottie animation",
-    underConstruction: true,
-  },
-  {
-    name: "Framer animation",
-    underConstruction: true,
-  },
-  {
-    name: "Rive animation",
+    name: "Rive",
     underConstruction: true,
   },
   {
     name: "Particles",
+    underConstruction: true,
+  },
+  {
+    name: "City View Nav",
+    underConstruction: true,
+  },
+  {
+    name: "Date Commands",
+    underConstruction: true,
+  },
+  {
+    name: "Auth",
     underConstruction: true,
   },
 ];
