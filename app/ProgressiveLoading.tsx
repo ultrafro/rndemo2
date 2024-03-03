@@ -8,7 +8,7 @@ import {
   getRemoteSource,
   wylanImage,
 } from "./FileUtils";
-import { useCachedFile } from "./useCachedFile";
+import { useCachedFile, useLocalFile } from "./useCachedFile";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -29,6 +29,15 @@ export default function ProgressiveLoading() {
     useState<boolean>(true);
 
   const [clearingCache, setClearingCache] = useState<boolean>(false);
+
+  const localResult = useLocalFile(
+    require(localSource),
+    localSource,
+    false,
+    () => {},
+    true,
+    true
+  );
 
   const image1result = useCachedFile(
     remoteSource1,
@@ -57,12 +66,14 @@ export default function ProgressiveLoading() {
     return <Text>Clearing cache......</Text>;
   }
 
+  console.log("wylan url: ", localResult?.localFile, localResult);
+
   return (
     <View className="flex-col w-full h-full justify-around items-center">
       <View className="w-48 h-48 bg-slate-500 flex-col justify-center items-center">
         <Image
           className="w-full h-full"
-          source={require(localSource)}
+          source={{ uri: localResult?.localFile ?? "" }}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}

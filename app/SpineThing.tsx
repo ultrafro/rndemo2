@@ -370,10 +370,6 @@ export class SpineThing extends THREE.Object3D {
         geometry.uvsNeedUpdate = true;
         geometry.verticesNeedUpdate = true;
 
-        if (slot.data.name == "goggles") {
-          console.log("goggles position: ", attachment.offset);
-        }
-
         mesh.attachmentTime = slot.getAttachmentTime();
       }
 

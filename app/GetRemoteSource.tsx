@@ -1,12 +1,31 @@
 import * as FileSystem from "expo-file-system";
 import { Button, View, Text, Platform } from "react-native";
 export const CACHE_IMAGE_FOLDER = FileSystem.cacheDirectory + "IMAGE_CACHE";
+import { Asset } from "expo-asset";
 
 export const getRemoteSourceRN = async (
   source: string,
   OnProgress?: (percent: number) => void,
-  dontFetch?: boolean
+  dontFetch?: boolean,
+  isLocal?: boolean
 ): Promise<{ localFile: string; contents: string } | null> => {
+  if (isLocal) {
+    try {
+      const [{ localUri }] = await Asset.loadAsync(source);
+
+      //read the localUri
+      if (!!localUri) {
+        const fileContents = await FileSystem.readAsStringAsync(localUri);
+
+        return { localFile: localUri, contents: fileContents };
+      } else {
+        return null;
+      }
+    } catch (e) {
+      console.error("Error creating asset from URI", e);
+    }
+  }
+
   await MakeSureCacheDirectoryExists();
 
   const hash = getHashFromSource(source);
@@ -43,9 +62,11 @@ export const getRemoteSourceRN = async (
     }
 
     console.warn(
-      `File at path ${source} does not exist in the FS. Attempting to fetch from the network.` +
+      `File at path ${source} does not exist in the FS. Attempting to fetch from the network: ` +
+        source +
+        " and put it in: " +
         cachedFileSource +
-        " dont fetch: " +
+        " dont fetch?: " +
         dontFetch
     );
 
@@ -70,10 +91,13 @@ export const getRemoteSourceRN = async (
       } else {
         console.log("Finished downloading to ", downloadResult);
 
-        return { localFile: downloadResult.uri, contents: "" };
+        const fileContents =
+          await FileSystem.readAsStringAsync(cachedFileSource);
+
+        return { localFile: downloadResult.uri, contents: fileContents };
       }
     } catch (e) {
-      console.error("failed to download: ", cachedFileSource, e);
+      console.error("failed to download: ", source, e);
       return null;
     }
   }

@@ -1,0 +1,213 @@
+title: Billie_Date_1
+tags: #bg:BG_RedCarpet
+---
+// (Fade from white to Billie (default)(Zoom1) in front of bg: BG_RedCarpet fx: CameraFlash)
+<<ZoomPortraitToLevel 0>>
+<<FadeBgToHexColor #ffffff>>
+<<wait  2>>
+<<ShowLastBgImg>>
+<<ChangeBgImg BG_RedCarpet>>
+<<ChangePortrait Billie Happy>>
+<<wait  1>>
+Billie Rush is the world's biggest pop star...
+
+<<FadeBgToHexColor #ffffff>>
+<<ChangeBgImg BG_Playground>>
+<<ShowLastBgImg>>
+// (Fade to white, Fade from white to Billie (happy)(Zoom3) in front of bg: BG_Playground fx: SunRays)
+<<ZoomPortraitToLevel 2>>
+And your high school best friend.
+
+Sometimes it's surreal.
+<<FadeBgToHexColor #ffffff>>
+<<HidePortrait>>
+<<StartParticles Dust>>
+<<ChangeBgImg BG_TVBillie>>
+<<ShowLastBgImg>>
+// (Fade to white, Fade from white to bg: BG_TVBillie --no character fx: Dust)
+
+You'll get a typical goofy Billie text, look at the tv and realize...
+She's sending it from the Grammy's.
+
+But lately she's seemed sad, distant even.
+
+It seems her larger-than-life world is cracking at the edges.
+
+// (Fade to white, fade from white to Reporter (Zoom2) to bg: BG_RedCarpet fx: CameraFlash)
+<<FadeBgToHexColor #ffffff>>
+<<ChangeBgImg BG_RedCarpet>>
+<<StopParticles Dust>>
+<<ShowLastBgImg>>
+<<ZoomPortraitToLevel 1>>
+Reporter: Pop sensation Billie Rush was recorded tossing a smoothie on her producer, Jonny X--
+
+But that sounds like the girl you always knew.
+
+Reporter: When asked for comment, Billie's representatives said, 'he deserved it.'
+<<HidePortrait>>
+
+// (Slide in new bg: BG_TVReporter)
+<<ChangeBgImg BG_TVReporter>>
+She texted you first.
+
+Billie: i know this is going to sound crazy but i need a favor :sweat_smile:
+Billie: i saw your post looking for roommates. can i move in?
+Billie: i swear i can keep the press under control. no one will know.
+-> r u ok? ofc you can room with me! // +supportive
+	Billie: knew i could count on you <3
+-> tell me if i can punch Jonny first! girl what happened // +sassy
+	Billie: ugh ill tell you when i get there :skull:
+<<HidePortrait>>
+// (Slide in new bg: BG_DoorClosed fx: Dust)
+<<ChangeBgImg BG_DoorClosed>>
+<<StartParticles Dust>>
+Knock!
+You're nervous.
+What if she's not the girl you giggled with under the bleachers anymore?
+
+// (Change bg: BG_DoorOpen, Slide in Billie (happy)(Zoom fx: Dust)
+<<ChangeBgImg BG_DoorOpen>>
+Billie: God, I'm so glad to see you. #expression:Happy
+You shouldn't have worried. Same Billie as always.
+You hug and help her drag her suitcases to her room.
+
+// (Slide in new bg: BG_BedroomBoxes (section1) Billie(default)(Zoom2) )
+<<HidePortrait>>
+<<ChangeBgImg BG_BedroomBoxes>>
+<<StartParticles Dust>>
+Dust fills the air as you shuffle about the room setting down her luggage.
+
+// (fx: Dirty Room)
+Light load for a pop star-- she's always been low-maintenance.
+
+// (section2)
+<<ZoomPortraitToLevel 1>>
+Billie: I needed this. A fresh start.
+She chokes back a cough as she says it.
+-> Let's make it a little more fresh and open a window!
+-> Sorry, it's so dusty, we can open a window!
+
+// (section3)
+
+You open the window-- a breeze rushes through and the dust clears.
+
+// (end fx: Dirty Room fx: Lens Flare)
+<<StopParticles Dust>>
+You: What do you think?
+-> It's not as fancy as what you're used to...
+-> Cute, right?
+Billie: $playerName, I LOVE it. This is SO you.
+Billie: Kind of strange to actually be in the apartment I've seen a million times on Facetime.
+You: This is going to be amazing...
+-> Like old times.
+// (Billie toggle visibility)
+	Billie gives you another warm hug.
+	She smells incredible.
+-> A wild adventure
+// (Billie (happy))
+	Billie laughs and claps her hands together.
+	Billie: Hell yea, $playerName.
+
+// (fade to black, black to bg: BG_Livingroom_TVSplash (section 1) fx: Dust)
+<<StartParticles Dust>>
+<<ChangeBgImg BG_Livingroom_TVSplash>>
+You order Chinese food and put on a Webflix comedy you talk over.
+She's got a piece of lo mein on her chin as she gossips about celebrity encounters.
+
+//(section 2, slide in Billie (default)(Zoom3))
+<<ZoomPortraitToLevel 2>>
+Billie: --I dropped the egg right on his shoes. On Good Morning America.
+Billie: He was furious.
+Billie: Okay dude, I can't flip an omelette, but at least I don't secretly date girls half my age.
+
+Your mind wanders to another minor scandal… the reason why she’s here.
+	-> Hey, are you okay? // Plus Supportive trait
+		Billie: Aw, $playerName. Better now that I'm here. #expression:Happy
+		//(Billie (happy))
+	-> So, fuck Jonny, am I right? // Plus Sassy trait
+		//(Billie (happy))
+		She laughs, but it's a little sad. #expression:Happy
+		Billie: He's such a dick.
+
+
+//(Billie (concerned))
+
+Billie: I signed a contract when I hit it big-- make five albums with him, then I could renegotiate. #expression:Concerned
+Billie: I've done four.
+Billie: At first, Jonny was in the background, directing & producing. Then we got closer.
+Billie: He was inspiring. He'd have an idea, I'd build on it, like an avalanche gaining momentum.
+//(Billie (default))
+Billie: But he started to get more and more controlling. #expression:Concerned
+//(Billie (concerned))
+Billie: From demanding I change lyrics to demanding what I'd wear out in public.
+-> That's messed up! // Plus Supportive
+	Billie: Right? I'm singing about MY life, about MY experiences. It’s the part that’s still mine.
+	Billie: But maybe that's naive.
+-> Is that part of his job?
+	Billie: My PR people tell me what to wear. The suits tell me where to be.
+	Billie: But the music is all me. It’s the part that’s still mine.
+	Billie: But maybe that's naive.
+
+
+-> You're a multi-platinum star, you should get say over your songs. // Plus Supportive trait
+-> That's not naive-- he sounds like an asshole. // Plus Sassy trait
+
+//(Billie (default))
+
+Billie: Yeah. But I'm trapped in this deal.
+
+//(Billie (concerned))
+
+Billie: I can't handle finishing one more album with him. #expression:Concerned
+Billie: We've already written a bunch of songs, but he keeps turning them down.
+-> Is there any way out?
+
+Billie: I could try to break my contract... but it'd all be a mess.
+Billie: The one thing I knew was that I had to get away. I have to find my own voice again.
+Billie: Get just a little bit of normalcy... Some room to breathe.
+Billie: And then maybe I’ll figure out what to do about my album.
+
+// (Billie (default))
+
+Billie: I know it sounds silly but getting to just, room with my best friend,
+Billie: do normal things, go grocery shopping, set my own schedule for a bit...
+
+// (Billie (happy))
+
+Billie: It's like the ultimate luxury to me. #expression:Happy
+
+-> That doesn't sound silly to me.
+	Billie leans her head on your shoulder for a moment gratefully.
+-> Better than red carpets and yacht parties?
+	Billie: Trust me, that stuff is overrated.
+
+// (Billie toggle visibility)
+<<HidePortrait>>
+<<ChangeBgImg BG_Livingroom_TVSplash>>
+Between shows, the TV drifts to the news.
+// (Section 3)
+
+Before you're able to change it, the smoothie toss comes on.
+
+// (slide in Billie (concerned))
+Billie: I'm just worried I don’t know how to make music without him. #expression:Concerned
+-> You built your career making your own music.
+-> That doesn’t sound like the Billie I know.
+
+// (Billie: default)
+Billie: This is why I knew I had to come live with you.
+Billie: You've always been the best reminder of who I want to be.
+
+In the light reflected in her eyes, you feel your heart shimmer.
+
+Your best friend, finally back by your side.
+
+Billie: But enough moping for one night, huh?
+// (Billie: happy)
+Billie: Pass me that General Gao's. Let's slam this, then how about a big night out on the town? #expression:Happy
+	-> Let's goooo!
+		Billie: I found the COOLEST place, wait 'till you see it...
+	-> Are you worried about paparazzi?
+		Billie: I didn't see anyone on the way in.
+		Billie: Besides, there's no way they know about the place we're going to...
+===

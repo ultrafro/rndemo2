@@ -2,6 +2,11 @@ import React from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useRawYSString, useYSFromPath } from "./DateHooks";
 
+//todo, figure out why local text files arent loading
+//const billieDate = require("../assets/ysdates/billie.yarn").text;
+// const billieDate = require("../assets/images/Jessa.png");
+// const billieDate = require("../assets/images/billieyarn.txt");
+
 export default function Date() {
   const {
     currentLine,
@@ -10,7 +15,10 @@ export default function Date() {
     nextLine,
     nextAvailable,
     availableCommands,
-  } = useYSFromPath("assets/ysdates/billie.yarn");
+    // } = useYSFromPath("../assets/ysdates/billie.yarn");
+  } = useYSFromPath(
+    "https://storage.googleapis.com/testcorsbucket/rndemo/ysdates/billie.yarn"
+  );
 
   return (
     <View className="flex-col w-full h-full bg-white justify-center space-y-12 items-center">

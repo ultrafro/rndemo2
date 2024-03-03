@@ -8,12 +8,18 @@ export const wylanImage = require("../assets/images/Wylan.png");
 export const getRemoteSource = async (
   source: string,
   OnProgress?: (percent: number) => void,
-  dontFetch?: boolean
+  dontFetch?: boolean,
+  isLocal?: boolean,
+  regularPath?: string
 ): Promise<{ localFile: string; contents: string } | null> => {
   if (Platform.OS !== "web") {
-    return getRemoteSourceRN(source, OnProgress, dontFetch);
+    return getRemoteSourceRN(source, OnProgress, dontFetch, isLocal);
   } else {
-    return getRemoteSourceWeb(source, OnProgress, dontFetch);
+    return getRemoteSourceWeb(
+      isLocal ? regularPath ?? "" : source,
+      OnProgress,
+      dontFetch
+    );
   }
 };
 
