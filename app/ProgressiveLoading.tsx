@@ -36,18 +36,23 @@ export default function ProgressiveLoading() {
     false,
     () => {},
     true,
+    true,
     true
   );
 
   const image1result = useCachedFile(
     remoteSource1,
     shouldNotFetchImage1,
-    setDownloadProgress1
+    setDownloadProgress1,
+    true,
+    true
   );
   const image2result = useCachedFile(
     remoteSource2,
     shouldNotFetchImage2,
-    setDownloadProgress2
+    setDownloadProgress2,
+    true,
+    true
   );
 
   useEffect(() => {

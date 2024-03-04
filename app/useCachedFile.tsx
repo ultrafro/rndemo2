@@ -5,7 +5,8 @@ export function useCachedFile(
   path: string,
   dontFetch?: boolean,
   OnProgress?: (percent: number) => void,
-  readContents?: boolean
+  readContents?: boolean,
+  isBase64?: boolean
 ):
   | { localFile: string; contents?: string; forceCacheCheck: () => void }
   | undefined {
@@ -21,7 +22,7 @@ export function useCachedFile(
   >(undefined);
 
   useEffect(() => {
-    getRemoteSource(path, OnProgress, !!dontFetch, false)
+    getRemoteSource(path, OnProgress, !!dontFetch, false, undefined, isBase64)
       .then((result) => {
         if (result) {
           setResult({ ...result, forceCacheCheck });
@@ -43,7 +44,8 @@ export function useLocalFile(
   dontFetch?: boolean,
   OnProgress?: (percent: number) => void,
   readContents?: boolean,
-  isLocal?: boolean
+  isLocal?: boolean,
+  isBase64?: boolean
 ):
   | { localFile: string; contents?: string; forceCacheCheck: () => void }
   | undefined {
@@ -59,7 +61,8 @@ export function useLocalFile(
   >(undefined);
 
   useEffect(() => {
-    getRemoteSource(requirePath, OnProgress, !!dontFetch, isLocal, path)
+    console.log("useLocalFile: ", requirePath, path, dontFetch, forceRefresh);
+    getRemoteSource(requirePath, OnProgress, !!dontFetch, true, path, isBase64)
       .then((result) => {
         if (result) {
           setResult({ ...result, forceCacheCheck });

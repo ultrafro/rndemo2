@@ -6,14 +6,15 @@ export const CACHE_IMAGE_FOLDER = FileSystem.cacheDirectory + "IMAGE_CACHE";
 export const wylanImage = require("../assets/images/Wylan.png");
 
 export const getRemoteSource = async (
-  source: string,
+  source: string | number,
   OnProgress?: (percent: number) => void,
   dontFetch?: boolean,
   isLocal?: boolean,
-  regularPath?: string
+  regularPath?: string,
+  isBase64?: boolean
 ): Promise<{ localFile: string; contents: string } | null> => {
   if (Platform.OS !== "web") {
-    return getRemoteSourceRN(source, OnProgress, dontFetch, isLocal);
+    return getRemoteSourceRN(source, OnProgress, dontFetch, isLocal, isBase64);
   } else {
     return getRemoteSourceWeb(
       isLocal ? regularPath ?? "" : source,

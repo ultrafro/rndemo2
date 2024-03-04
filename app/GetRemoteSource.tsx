@@ -3,20 +3,111 @@ import { Button, View, Text, Platform } from "react-native";
 export const CACHE_IMAGE_FOLDER = FileSystem.cacheDirectory + "IMAGE_CACHE";
 import { Asset } from "expo-asset";
 import { Buffer } from "buffer";
+import { resolveAsync } from "expo-asset-utils";
 
-export const getRemoteSourceRN = async (
+const isImage = (source: string) => {
+  console.log("is image?", source, typeof source);
+  return (
+    source.toLocaleLowerCase().endsWith(".png") ||
+    source.toLocaleLowerCase().endsWith(".jpg") ||
+    source.toLocaleLowerCase().endsWith(".jpeg") ||
+    source.toLocaleLowerCase().endsWith(".bmp") ||
+    source.toLocaleLowerCase().endsWith(".gif") ||
+    source.toLocaleLowerCase().endsWith(".tiff")
+  );
+};
+
+const getEncodingType = (source: string | number, isBase64?: boolean) => {
+  console.log("getting encoding type for: ", source, typeof source);
+
+  if (isBase64) return FileSystem.EncodingType.Base64;
+
+  if (typeof source === "number") {
+    return FileSystem.EncodingType.UTF8;
+  }
+
+  return isImage(source as string)
+    ? FileSystem.EncodingType.Base64
+    : FileSystem.EncodingType.UTF8;
+};
+
+export const getRemoteSourceRNExperimental = async (
   source: string,
   OnProgress?: (percent: number) => void,
   dontFetch?: boolean,
-  isLocal?: boolean
+  isLocal?: boolean,
+  isBase64?: boolean
 ): Promise<{ localFile: string; contents: string } | null> => {
+  if (isLocal) {
+    try {
+      // const asset = await resolveAsync(source);
+
+      // const contents = await asset.downloadAsync();
+
+      const assets = await Asset.loadAsync(source);
+
+      if (assets.length < 1) {
+        console.error("No assets found for source: ", source);
+        return null;
+      }
+
+      const asset = assets[0];
+
+      if (!asset.localUri) {
+        console.error("No localUri found for asset: ", asset);
+        return null;
+      }
+
+      const fileContents = await FileSystem.readAsStringAsync(asset.localUri, {
+        encoding: getEncodingType(source, isBase64),
+      });
+      const localUri = asset.localUri;
+
+      return { localFile: localUri, contents: fileContents };
+    } catch (e) {
+      console.error("Error resolving asset: ", e);
+      return null;
+    }
+  } else {
+    try {
+      const asset = Asset.fromURI(source);
+      await asset.downloadAsync();
+
+      if (!asset.localUri) {
+        console.error("No localUri found for asset: ", asset);
+        return null;
+      }
+
+      const fileContents = await FileSystem.readAsStringAsync(asset.localUri, {
+        encoding: getEncodingType(source, isBase64),
+      });
+      const localUri = asset.localUri;
+
+      return { localFile: localUri, contents: fileContents };
+    } catch (e) {
+      console.error("Error resolving asset: ", e);
+      return null;
+    }
+  }
+};
+
+export const getRemoteSourceRN = async (
+  source: string | number,
+  OnProgress?: (percent: number) => void,
+  dontFetch?: boolean,
+  isLocal?: boolean,
+  isBase64?: boolean
+): Promise<{ localFile: string; contents: string } | null> => {
+  console.log("getRemoteSourceRN: ", source, isBase64);
   if (isLocal) {
     try {
       const [{ localUri }] = await Asset.loadAsync(source);
 
       //read the localUri
       if (!!localUri) {
-        const fileContents = await FileSystem.readAsStringAsync(localUri);
+        const fileContents = await FileSystem.readAsStringAsync(localUri, {
+          encoding: getEncodingType(source, isBase64),
+        });
 
         return { localFile: localUri, contents: fileContents };
       } else {
@@ -29,7 +120,7 @@ export const getRemoteSourceRN = async (
 
   await MakeSureCacheDirectoryExists();
 
-  const hash = getHashFromSource(source);
+  const hash = getHashFromSource(source as string);
 
   const cachedFileSource = `${CACHE_IMAGE_FOLDER}/${hash}`;
 
@@ -45,7 +136,9 @@ export const getRemoteSourceRN = async (
   }
 
   if (cacheFileRetrievalSuccess) {
-    const fileContents = await FileSystem.readAsStringAsync(cachedFileSource);
+    const fileContents = await FileSystem.readAsStringAsync(cachedFileSource, {
+      encoding: getEncodingType(source, isBase64),
+    });
 
     OnProgress?.(1);
 
@@ -71,7 +164,7 @@ export const getRemoteSourceRN = async (
     };
 
     const downloadResumable = FileSystem.createDownloadResumable(
-      source,
+      source as string,
       cachedFileSource,
       {},
       progressCB
@@ -87,7 +180,9 @@ export const getRemoteSourceRN = async (
 
         const fileContents = await FileSystem.readAsStringAsync(
           cachedFileSource,
-          { encoding: FileSystem.EncodingType.UTF8 }
+          {
+            encoding: getEncodingType(source, isBase64),
+          }
         );
 
         return {
@@ -103,17 +198,17 @@ export const getRemoteSourceRN = async (
 };
 
 export const getRemoteSourceWeb = async (
-  source: string,
+  source: string | number,
   OnProgress?: (percent: number) => void,
   dontFetch?: boolean
 ): Promise<{ localFile: string; contents: string } | null> => {
-  const response = await fetch(source); // Adjust the path as per your file location
+  const response = await fetch(source as string); // Adjust the path as per your file location
   if (!response.ok) {
     console.warn("Failed to fetch file: " + source);
   }
   const content = await response.text();
   OnProgress?.(1);
-  return { localFile: source, contents: content };
+  return { localFile: source as string, contents: content };
 };
 
 async function MakeSureCacheDirectoryExists() {
