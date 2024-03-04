@@ -79,7 +79,7 @@ function RootLayoutNav() {
         selectedExperimentComponent}
 
       {!!selectedExperiment && (
-        <View className="absolute top-0 right-0 m-4">
+        <View className="absolute top-[50px] right-[50px] m-4">
           <Button
             title="Back"
             onPress={() => {
