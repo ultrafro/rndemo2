@@ -51,6 +51,14 @@ export const experiments = [
     name: "Auth",
     underConstruction: true,
   },
+  {
+    name: "Payments",
+    underConstruction: true,
+  },
+  {
+    name: "Game State",
+    underConstruction: true,
+  },
 ];
 
 export function Experiments({
