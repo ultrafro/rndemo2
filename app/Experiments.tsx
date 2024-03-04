@@ -5,6 +5,7 @@ import SpineTest from "./SpineTest";
 import { ReactNode } from "react";
 import ProgressiveLoading from "./ProgressiveLoading";
 import ReanimatedTest from "./ReanimatedTest";
+import CityView from "./CityView";
 
 export type ExperimentChip = {
   name: string;
@@ -36,7 +37,8 @@ export const experiments = [
   },
   {
     name: "City View Nav",
-    underConstruction: true,
+    component: <CityView />,
+    underConstruction: false,
   },
   {
     name: "Date Commands",
