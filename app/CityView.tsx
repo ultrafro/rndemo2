@@ -12,6 +12,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Image } from "expo-image";
 import { useState } from "react";
+import CityViewHeads from "./CityViewHeads";
 
 export default function CityView() {
   const startX = useSharedValue(0);
@@ -22,9 +23,8 @@ export default function CityView() {
 
   const BOUNDS = 500;
 
-  const AnimatedImageComponent: any = Animated.createAnimatedComponent(
-    Image as any
-  );
+  const IMWIDTH = 3072;
+  const IMHEIGHT = 2816;
 
   const pan = Gesture.Pan()
     .onBegin((event) => {
@@ -58,6 +58,17 @@ export default function CityView() {
     });
 
   const animatedStyles = useAnimatedStyle(() => {
+    let tx = startX.value + offsetX.value - IMWIDTH / 2;
+    let ty = startY.value + offsetY.value - IMHEIGHT / 2;
+
+    // console.log("start x", startX.value, "offset x", offsetX.value);
+
+    return {
+      transform: [{ translateX: tx }, { translateY: ty }],
+    };
+  });
+
+  const animatedStylesHeads = useAnimatedStyle(() => {
     let tx = startX.value + offsetX.value;
     let ty = startY.value + offsetY.value;
 
@@ -71,18 +82,29 @@ export default function CityView() {
   return (
     <View className="w-full h-full">
       <GestureHandlerRootView className="w-full h-full ">
-        <View className="w-full h-full flex-col justify-center items-center ">
-          <GestureDetector gesture={pan}>
-            {/* <Animated.View
+        <View className="w-full h-full flex-col justify-center items-center relative ">
+          {/* <Animated.View
               className="w-24 h-24 bg-violet-500"
               style={animatedStyles}
             /> */}
+
+          <GestureDetector gesture={pan}>
             <Animated.Image
+              className="absolute top-0 left-0 "
               style={animatedStyles}
               source={require("../assets/images/Extended.png")}
             />
+          </GestureDetector>
 
-            {/* <Animated.View style={animatedStyles}>
+          <Animated.View
+            className="absolute top-0 left-0 w-full h-full pointer-events-none select-none "
+            pointerEvents={"box-none"}
+            style={animatedStylesHeads}
+          >
+            <CityViewHeads />
+          </Animated.View>
+
+          {/* <Animated.View style={animatedStyles}>
 
               <View className="w-24 h-24  bg-violet-500">
                 <Animated.Image
@@ -92,7 +114,6 @@ export default function CityView() {
               </View>
 
             </Animated.View> */}
-          </GestureDetector>
         </View>
       </GestureHandlerRootView>
     </View>
