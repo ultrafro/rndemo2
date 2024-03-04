@@ -3,10 +3,10 @@ import { Image } from "expo-image";
 
 const TEMP_HEADS = [
   {
-    id: "Logan",
+    id: "Wylan",
     x: 250,
     y: 250,
-    source: require("../assets/images/Logan.png"),
+    source: require("../assets/images/Wylan.png"),
   },
   {
     id: "Mei",
