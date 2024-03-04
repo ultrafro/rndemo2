@@ -61,7 +61,6 @@ export function useLocalFile(
   >(undefined);
 
   useEffect(() => {
-    console.log("useLocalFile: ", requirePath, path, dontFetch, forceRefresh);
     getRemoteSource(requirePath, OnProgress, !!dontFetch, true, path, isBase64)
       .then((result) => {
         if (result) {

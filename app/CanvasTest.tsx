@@ -36,14 +36,9 @@ export default function App() {
 
       renderer.render(sceneRef.current, cameraRef.current);
 
-      // console.log(renderer);
       const gl = renderer.getContext();
-      // console.log(gl);
-      // debugger;
 
       gl.endFrameEXP();
-      // // NOTE: At the end of each frame, notify `Expo.GLView` with the below
-      // renderer.__gl.endFrameEXP();
 
       raf = requestAnimationFrame(onRender);
     };
@@ -62,9 +57,6 @@ export default function App() {
         // Create a WebGLRenderer without a DOM element
         const renderer = new Renderer({ gl });
         renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
-
-        console.log("width: " + gl.drawingBufferWidth);
-        console.log("height: " + gl.drawingBufferHeight);
 
         //set clear color to black
         renderer.setClearColor(0x000000, 1.0);

@@ -35,9 +35,6 @@ export default function CityView() {
       let factor = 1;
       offsetX.value = factor * event.translationX;
       offsetY.value = factor * event.translationY;
-
-      //console.log("ex", event.translationX, "ey", event.translationY);
-      //   console.log("offsetX", offsetX.value, "offsetY", offsetY.value);
     })
     .onFinalize((event) => {
       startX.value += offsetX.value;
@@ -61,8 +58,6 @@ export default function CityView() {
     let tx = startX.value + offsetX.value - IMWIDTH / 2;
     let ty = startY.value + offsetY.value - IMHEIGHT / 2;
 
-    // console.log("start x", startX.value, "offset x", offsetX.value);
-
     return {
       transform: [{ translateX: tx }, { translateY: ty }],
     };
@@ -71,8 +66,6 @@ export default function CityView() {
   const animatedStylesHeads = useAnimatedStyle(() => {
     let tx = startX.value + offsetX.value;
     let ty = startY.value + offsetY.value;
-
-    // console.log("start x", startX.value, "offset x", offsetX.value);
 
     return {
       transform: [{ translateX: tx }, { translateY: ty }],

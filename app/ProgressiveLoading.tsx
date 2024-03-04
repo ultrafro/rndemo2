@@ -71,8 +71,6 @@ export default function ProgressiveLoading() {
     return <Text>Clearing cache......</Text>;
   }
 
-  console.log("wylan url: ", localResult?.localFile, localResult);
-
   return (
     <View className="flex-col w-full h-full justify-around items-center">
       <View className="w-48 h-48 bg-slate-500 flex-col justify-center items-center">

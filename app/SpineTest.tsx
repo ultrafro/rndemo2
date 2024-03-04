@@ -58,14 +58,9 @@ export default function App() {
 
       renderer.render(sceneRef.current, cameraRef.current);
 
-      // console.log(renderer);
       const gl = renderer.getContext();
-      // console.log(gl);
-      // debugger;
 
       gl.endFrameEXP();
-      // // NOTE: At the end of each frame, notify `Expo.GLView` with the below
-      // renderer.__gl.endFrameEXP();
 
       lastTime.current = newTime;
 
@@ -88,17 +83,8 @@ export default function App() {
           const renderer = new Renderer({ gl });
           renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
 
-          console.log("width: " + gl.drawingBufferWidth);
-          console.log("height: " + gl.drawingBufferHeight);
-
-          console.log("screen width: " + window.screen.width);
-          console.log("screen height: " + window.screen.height);
-
           const windowWidth = Dimensions.get("window").width;
           const windowHeight = Dimensions.get("window").height;
-
-          console.log("dimension window width: " + windowWidth);
-          console.log("dimension window height: " + windowHeight);
 
           //set clear color to black
           renderer.setClearColor(0x000000, 1.0);
@@ -148,36 +134,7 @@ export default function App() {
             },
           });
 
-          // const spineAssetManager = new spine.AssetManager("assets/spine/Billie");
-          // const atlas = spineAssetManager.require(
-          //   "/Billie_Willow_Spine.atlas.txt"
-          // );
-
-          // const testSpine = new SpineObject(sceneRef.current);
-
           console.log("🟩test spine: ", spineThing);
-
-          // const spineLoader = new SpineLoader();
-          // spineLoader.load(
-          //   "assets/spine/Billie/Billie_Willow_Spine.json",
-          //   (data: any) => {
-          //     // Create a Spine Skeleton
-          //     const spineSkeleton = new SpineSkeleton(data);
-
-          //     // Create a Spine Animation
-          //     const spineAnimation = new SpineAnimation(spineSkeleton);
-
-          //     // // Add Spine Animation to Three.js scene
-          //     sceneRef.current.add(spineAnimation);
-
-          //     spineAnimationRef.current = spineAnimation;
-
-          //     setRenderer(renderer);
-
-          //     // // Start animation loop
-          //     // animate();
-          //   }
-          // );
         }}
       />
       <Button

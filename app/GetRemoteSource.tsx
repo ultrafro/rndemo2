@@ -6,7 +6,6 @@ import { Buffer } from "buffer";
 import { resolveAsync } from "expo-asset-utils";
 
 const isImage = (source: string) => {
-  console.log("is image?", source, typeof source);
   return (
     source.toLocaleLowerCase().endsWith(".png") ||
     source.toLocaleLowerCase().endsWith(".jpg") ||
@@ -18,8 +17,6 @@ const isImage = (source: string) => {
 };
 
 const getEncodingType = (source: string | number, isBase64?: boolean) => {
-  console.log("getting encoding type for: ", source, typeof source);
-
   if (isBase64) return FileSystem.EncodingType.Base64;
 
   if (typeof source === "number") {
@@ -98,7 +95,6 @@ export const getRemoteSourceRN = async (
   isLocal?: boolean,
   isBase64?: boolean
 ): Promise<{ localFile: string; contents: string } | null> => {
-  console.log("getRemoteSourceRN: ", source, isBase64);
   if (isLocal) {
     try {
       const [{ localUri }] = await Asset.loadAsync(source);
@@ -176,7 +172,7 @@ export const getRemoteSourceRN = async (
         console.error("Failed to download image");
         return null;
       } else {
-        console.log("Finished downloading to ", downloadResult);
+        console.log("Finished downloading ", source);
 
         const fileContents = await FileSystem.readAsStringAsync(
           cachedFileSource,

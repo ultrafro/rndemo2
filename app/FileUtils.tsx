@@ -75,7 +75,6 @@ const cleanupCacheRN = async () => {
         );
       }
       if (!fileUnreadable) {
-        //console.log("deleting cache file: " + cachedFiles[i]);
         await FileSystem.deleteAsync(`${CACHE_IMAGE_FOLDER}/${cachedFiles[i]}`);
       }
     }

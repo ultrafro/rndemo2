@@ -4,7 +4,6 @@ import { getRemoteSource } from "./FileUtils";
 export async function LoadText(
   path: string
 ): Promise<{ result?: string; error?: any }> {
-  console.log("loading text at path: ", path);
   try {
     const RSResult = await getRemoteSource(
       path,
@@ -29,7 +28,6 @@ export async function LoadTexture(path: string): Promise<{
   height?: number;
   error?: any;
 }> {
-  console.log("loading texture at path: ", path);
   let texture: THREE.Texture | null = null;
   try {
     // texture = await ExpoTHREE.loadAsync(RSResult.localFile);
@@ -38,8 +36,6 @@ export async function LoadTexture(path: string): Promise<{
     console.error("Error loading texture: ", e);
     return { error: e };
   }
-
-  console.log("loaded texture.", texture.image.width, texture.image.height);
 
   return {
     texture,
@@ -85,7 +81,6 @@ export function LoadTextWithCallback(
   callback: (text: string) => void
 ) {
   LoadText(path).then(({ result, error }) => {
-    console.log("result", result, "error", error);
     if (!!error) {
       console.error(error);
       return;

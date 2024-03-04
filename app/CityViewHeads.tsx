@@ -29,7 +29,6 @@ export default function CityViewHeads() {
         pointerEvents="none"
       >
         {TEMP_HEADS.map((head) => {
-          console.log("head", head);
           return (
             <View
               key={head.id}

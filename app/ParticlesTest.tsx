@@ -44,7 +44,6 @@ export default function ParticlesTest() {
 
     const clickX = e.nativeEvent.locationX;
     const clickY = e.nativeEvent.locationY;
-    console.log("press", clickX, clickY);
     handleParticle(clickX, clickY);
   };
 
