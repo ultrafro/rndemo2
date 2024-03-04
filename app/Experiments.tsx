@@ -6,7 +6,6 @@ import { ReactNode } from "react";
 import ProgressiveLoading from "./ProgressiveLoading";
 import ReanimatedTest from "./ReanimatedTest";
 import CityView from "./CityView";
-import { Particle } from "tsparticles-engine";
 import ParticlesTest from "./ParticlesTest";
 
 export type ExperimentChip = {
@@ -16,11 +15,11 @@ export type ExperimentChip = {
 };
 
 export const experiments = [
-  { name: "Yarnspinner", component: <DatePage />, underConstruction: false },
+  { name: "Yarn spinner", component: <DatePage />, underConstruction: false },
   { name: "Three JS", component: <CanvasTest />, underConstruction: false },
   { name: "Spine", component: <SpineTest />, underConstruction: false },
   {
-    name: "Progressive Loading",
+    name: "Loading",
     component: <ProgressiveLoading />,
     underConstruction: false,
   },
@@ -67,7 +66,7 @@ export function Experiments({
   OnSelect: (experiment: string) => void;
 }) {
   return (
-    <View className="flex flex-wrap justify-start items-center w-full h-full  gap-8  p-12">
+    <View className="flex flex-wrap justify-center items-center w-full h-full  gap-4  p-8">
       {experiments.map((experiment) => {
         const OnPress = () => {
           if (experiment.component) {
@@ -78,7 +77,7 @@ export function Experiments({
         return (
           <Pressable
             key={experiment.name}
-            className={` p-4 bg-blue-500 w-[30%] h-[20%] justify-center items-center text-center text-white rounded-lg focus:outline-none ${
+            className={` p-4 bg-blue-500 w-[32%] h-[20%] justify-center items-center text-center text-white rounded-lg focus:outline-none ${
               experiment.underConstruction
                 ? "opacity-50 cursor-not-allowed"
                 : ""
@@ -86,11 +85,13 @@ export function Experiments({
             onPress={OnPress}
           >
             <View className="w-full h-full flex-col justify-around items-center">
-              <Text className="text-black dark:text-white">
+              <Text className="text-black dark:text-white  text-xs">
                 {experiment.name}
               </Text>
               {experiment.underConstruction && (
-                <Text className="block text-xs mt-1">Under Construction</Text>
+                <Text className="flex justify-center items-center text-xs mt-1 text-center ">
+                  coming soon
+                </Text>
               )}
             </View>
           </Pressable>
