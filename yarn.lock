@@ -8173,6 +8173,13 @@ react-native-gesture-handler@~2.14.0:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-particles@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-particles/-/react-native-particles-0.0.8.tgz#332a3ee1aa540c35845650fd6d7e5ff8ce6054bc"
+  integrity sha512-N24j7oFX/myRrriZRigl9XeF3rfCY1NQ9wTpaIgSgbQpDxPrVuoO2NOuTYrXSyi41jpXEg7fN64HpkI8MQXrYg==
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 react-native-reanimated@~3.6.2:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.6.3.tgz#859cf2320e37c80e3a21e19db24f82c34d6d3ded"

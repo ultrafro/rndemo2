@@ -6,6 +6,8 @@ import { ReactNode } from "react";
 import ProgressiveLoading from "./ProgressiveLoading";
 import ReanimatedTest from "./ReanimatedTest";
 import CityView from "./CityView";
+import { Particle } from "tsparticles-engine";
+import ParticlesTest from "./ParticlesTest";
 
 export type ExperimentChip = {
   name: string;
@@ -33,7 +35,8 @@ export const experiments = [
   },
   {
     name: "Particles",
-    underConstruction: true,
+    component: <ParticlesTest />,
+    underConstruction: false,
   },
   {
     name: "City View Nav",
